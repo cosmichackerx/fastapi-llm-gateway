@@ -113,14 +113,6 @@ cd ~
 /nano main.py
 ```
 
-## Saving & Exiting Nano
-
-After editing your main.py :
-
-1. Press **Ctrl + O** to save changes.
-2. Hit **Enter** to confirm the filename.
-3. Press **Ctrl + X** to exit Nano.
-
 ---
 ```python
 import os, json, subprocess, requests, socket, time
@@ -205,7 +197,17 @@ async def generate_image(data: RequestData, authorization: str = Header(None)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 ```
+
+## Saving & Exiting Nano
+
+After editing your main.py :
+
+1. Press **Ctrl + O** to save changes.
+2. Hit **Enter** to confirm the filename.
+3. Press **Ctrl + X** to exit Nano.
+
 ---
+
 ```bash
 # Launch with: 
 # uvicorn main:app --host 0.0.0.0 --port 8000
