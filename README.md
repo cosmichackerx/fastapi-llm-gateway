@@ -191,7 +191,7 @@ async def generate_image(data: RequestData, authorization: str = Header(None)):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 ```
-
+---
 ```bash
 # Launch with: 
 # uvicorn main:app --host 0.0.0.0 --port 8000
