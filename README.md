@@ -232,3 +232,12 @@ This session handles the Llama 3.2 1B model.
 ```bash
 tmux attach -t session_name
 ```
+
+- Run the Launch Command:
+  ```bash
+  cd ~/llama.cpp
+  ./build/bin/llama-server -m models/llama-3.2-1b-instruct-q4_k_m.gguf --port 8080 --host 0.0.0.0 -c 2048 -t 2 --flash-attn on
+  ```
+
+> Wait for the green light: Once you see main: server is listening on **http://0.0.0.0:8080**, hide the session.
+> Detach: Press **CTRL + B**, then *D*.
