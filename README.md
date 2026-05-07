@@ -79,3 +79,13 @@ cmake --build build --config Release
 cd models
 curl -L -o llama-3.2-1b-instruct-q4_k_m.gguf https://huggingface.co/unsloth/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf
 ```
+
+## 🎨 Step 4: Image Engine Setup (stable-diffusion.cpp)
+
+**1. Build the Engine**
+```bash
+git clone https://github.com/ggerganov/llama.cpp
+cd llama.cpp
+cmake -B build
+cmake --build build --config Release
+```
