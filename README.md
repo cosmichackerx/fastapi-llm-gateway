@@ -108,6 +108,20 @@ pip install fastapi uvicorn requests pydantic
 
 The **main.py** acts as the traffic controller, routing requests to the local engines running on ports 8080 and subprocesses.
 
+```bash
+cd ~
+/nano main.py
+```
+
+## Saving & Exiting Nano
+
+After editing your main.py :
+
+1. Press **Ctrl + O** to save changes.
+2. Hit **Enter** to confirm the filename.
+3. Press **Ctrl + X** to exit Nano.
+
+---
 ```python
 import os, json, subprocess, requests, socket, time
 from fastapi import FastAPI, Header, HTTPException
