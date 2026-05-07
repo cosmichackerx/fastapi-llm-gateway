@@ -14,7 +14,8 @@ Lightweight AI inference bridge for running LLMs and Stable Diffusion on AWS CPU
 
 # 🛠️ Step 1: AWS Server Configuration
 
-## 1. Instance Setup
+**1. Instance Setup**
+
 - **AMI**: Ubuntu 24.04 LTS (HVM)  
 - **Instance Type**: `t3.medium` or `t3.large`  
   - **Recommended**: `m7i-flex.large`  
@@ -22,7 +23,8 @@ Lightweight AI inference bridge for running LLMs and Stable Diffusion on AWS CPU
 
 ---
 
-## 2. Network Security (Security Group)
+**2. Network Security (Security Group)**
+
 You must configure the **Inbound Rules** to allow traffic to the API and the internal engines.
 
 ### Suggested Rules:
@@ -63,7 +65,7 @@ sudo apt install build-essential cmake git python3-pip python3-venv -y
 
 # 🧠 Step 3: Text Engine Setup (llama.cpp)
 
-## 1. Build the Engine
+**1. Build the Engine**
 ```bash
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
