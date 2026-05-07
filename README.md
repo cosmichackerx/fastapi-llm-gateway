@@ -118,10 +118,10 @@ from typing import Optional
 app = FastAPI(title="Cosmic Army X - Titan Lite Bridge")
 
 # --- CONFIGURATION ---
-SECRET_KEY = os.environ.get("ANDROID_CLIENT_SECRET", "cosmic_api_key_13579")
+SECRET_KEY = os.environ.get("MOCK_CLIENT_SECRET", "mock_api_key_12345")
 TEXT_URL = "http://127.0.0.1:8080/v1/chat/completions"
-SD_PATH = "/home/ubuntu/stable-diffusion.cpp/build/bin/sd-cli"
-SD_MODEL = "/home/ubuntu/stable-diffusion.cpp/models/sd_turbo.safetensors"
+SD_PATH = "/home/mockuser/stable-diffusion.cpp/build/bin/sd-cli"
+SD_MODEL = "/home/mockuser/stable-diffusion.cpp/models/sd_turbo.safetensors"
 
 class RequestData(BaseModel):
     inputs: Optional[str] = None
@@ -142,7 +142,7 @@ async def get_status(authorization: str = Header(None)):
     verify_auth(authorization)
     llama_online = is_port_open(8080)
     return {
-        "status": "Cosmic Titan-Lite Online",
+        "status": "Titan-Lite Online",
         "text_engine_8080": "ONLINE" if llama_online else "OFFLINE",
         "image_engine": "READY (384px Boost)",
         "timestamp": int(time.time())
@@ -167,7 +167,7 @@ async def generate(data: RequestData, authorization: str = Header(None)):
                 for line in r.iter_lines():
                     if line: yield f"{line.decode('utf-8')}\n\n"
         except Exception as e:
-            yield f"data: {{\"error\": \"Brain Node Error: {str(e)}\"}}\n\n"
+            yield f"data: {{\"error\": \"Text Engine Error: {str(e)}\"}}\n\n"
             
     return StreamingResponse(stream_logic(), media_type="text/event-stream")
 
@@ -178,7 +178,7 @@ async def generate_image(data: RequestData, authorization: str = Header(None)):
     if not data.prompt:
         raise HTTPException(status_code=400, detail="Missing prompt")
         
-    output_file = "/home/ubuntu/stable-diffusion.cpp/api_output.png"
+    output_file = "/home/mockuser/stable-diffusion.cpp/api_output.png"
     # Optimized for CPU Speed: 3 steps + 384px canvas
     cmd = [
         SD_PATH, "-m", SD_MODEL, "-p", data.prompt, 
