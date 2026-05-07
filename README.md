@@ -45,7 +45,7 @@ You must configure the **Inbound Rules** to allow traffic to the API and the int
 
 # 🔑 Step 2: Connection & Local Setup
 
-## 1. Connect to Your Server
+**1. Connect to Your Server**
 From your local **Windows/Linux terminal**:
 
 ```bash
@@ -53,7 +53,7 @@ From your local **Windows/Linux terminal**:
 ssh -i "your-cosmic-key.pem" ubuntu@your-aws-public-ip
 ```
 
-## 2. Initial Server Preparation
+**2. Initial Server Preparation**
 Run the following commands to update and install essential packages:
 
 ```bash
