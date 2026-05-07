@@ -9,3 +9,16 @@ Lightweight AI inference bridge for running LLMs and Stable Diffusion on AWS CPU
 * **Artist Node:** Powered by SD-Turbo with 384px CPU optimization.
 * **The Bridge:** A FastAPI-based REST API with Bearer Token security.
 * **Resource Efficient:** Optimized for AWS t3/t2 instances (vCPU/RAM focused).
+
+.
+
+# 🛠️ Step 1: AWS Server Configuration
+*1. Instance Setup*
+AMI: Ubuntu 24.04 LTS (HVM)
+
+Instance Type: t3.medium , or t3.large. (Recommended = m7i-flex.large )
+
+Storage: 20GB+ (SSD gp3).
+
+*2. Network Security (Security Group)*
+You must configure the Inbound Rules to allow traffic to the API and the internal engines:
