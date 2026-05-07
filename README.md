@@ -105,7 +105,93 @@ pip install fastapi uvicorn requests pydantic
 ```
 
 **2. Create main.py**
+
 The **main.py** acts as the traffic controller, routing requests to the local engines running on ports 8080 and subprocesses.
+
+```python
+import os, json, subprocess, requests, socket, time
+from fastapi import FastAPI, Header, HTTPException
+from fastapi.responses import StreamingResponse, FileResponse
+from pydantic import BaseModel
+from typing import Optional
+
+app = FastAPI(title="Cosmic Army X - Titan Lite Bridge")
+
+# --- CONFIGURATION ---
+SECRET_KEY = os.environ.get("ANDROID_CLIENT_SECRET", "cosmic_api_key_13579")
+TEXT_URL = "http://127.0.0.1:8080/v1/chat/completions"
+SD_PATH = "/home/ubuntu/stable-diffusion.cpp/build/bin/sd-cli"
+SD_MODEL = "/home/ubuntu/stable-diffusion.cpp/models/sd_turbo.safetensors"
+
+class RequestData(BaseModel):
+    inputs: Optional[str] = None
+    prompt: Optional[str] = None
+
+def verify_auth(auth: str):
+    if not auth or auth != f"Bearer {SECRET_KEY}":
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+def is_port_open(port: int):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        s.settimeout(1.0)
+        return s.connect_ex(('127.0.0.1', port)) == 0
+
+# --- 1. SYSTEM STATUS (Health Check) ---
+@app.get("/api/status")
+async def get_status(authorization: str = Header(None)):
+    verify_auth(authorization)
+    llama_online = is_port_open(8080)
+    return {
+        "status": "Cosmic Titan-Lite Online",
+        "text_engine_8080": "ONLINE" if llama_online else "OFFLINE",
+        "image_engine": "READY (384px Boost)",
+        "timestamp": int(time.time())
+    }
+
+# --- 2. TEXT GENERATION ---
+@app.post("/api/generate")
+async def generate(data: RequestData, authorization: str = Header(None)):
+    verify_auth(authorization)
+    if not data.inputs:
+        raise HTTPException(status_code=400, detail="Missing inputs")
+    
+    payload = {
+        "messages": [{"role": "user", "content": data.inputs}],
+        "stream": True, "temperature": 0.7, "max_tokens": 512
+    }
+    
+    def stream_logic():
+        try:
+            with requests.post(TEXT_URL, json=payload, stream=True, timeout=30) as r:
+                r.raise_for_status()
+                for line in r.iter_lines():
+                    if line: yield f"{line.decode('utf-8')}\n\n"
+        except Exception as e:
+            yield f"data: {{\"error\": \"Brain Node Error: {str(e)}\"}}\n\n"
+            
+    return StreamingResponse(stream_logic(), media_type="text/event-stream")
+
+# --- 3. IMAGE GENERATION ---
+@app.post("/api/image")
+async def generate_image(data: RequestData, authorization: str = Header(None)):
+    verify_auth(authorization)
+    if not data.prompt:
+        raise HTTPException(status_code=400, detail="Missing prompt")
+        
+    output_file = "/home/ubuntu/stable-diffusion.cpp/api_output.png"
+    # Optimized for CPU Speed: 3 steps + 384px canvas
+    cmd = [
+        SD_PATH, "-m", SD_MODEL, "-p", data.prompt, 
+        "--steps", "3", "-o", output_file, 
+        "--width", "384", "--height", "384", "-t", "2"
+    ]
+    try:
+        subprocess.run(cmd, check=True)
+        return FileResponse(output_file, media_type="image/png")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+```
+
 ```bash
 # Launch with: 
 # uvicorn main:app --host 0.0.0.0 --port 8000
