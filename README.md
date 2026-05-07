@@ -217,12 +217,12 @@ After editing your main.py :
 **Before we launch, remember these three "Golden Commands":**
 - Detach (Hide the screen): Press **CTRL + B**, then let go, then immediately press **D**.
 
--List Sessions:
+- List Sessions:
 ```bash
 tmux ls
 ```
 
--Re-attach (Open the screen): 
+- Re-attach (Open the screen): 
 ```bash
 tmux attach -t session_name
 ```
