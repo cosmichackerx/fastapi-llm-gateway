@@ -71,3 +71,5 @@ git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
 cmake -B build
 cmake --build build --config Release
+
+**2. Download the Optimized Model**
