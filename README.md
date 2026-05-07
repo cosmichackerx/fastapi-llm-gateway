@@ -261,3 +261,13 @@ This session handles the FastAPI main.py that connects to your Android app.
 > Wait for the green light: Once you see Uvicorn running on **http://0.0.0.0:8000**, hide the session.
 
 > Detach: Press *CTRL + B*, then *D*.
+
+**🔄 Part 3: Managing the Sessions**
+If you need to check if things are working or stop a server, use these commands:
+| Task                        | Command                          |
+|-----------------------------|----------------------------------|
+| **See what is running**     | `tmux ls`                        |
+| **Check the Brain Logs**    | `tmux attach -t text_engine`     |
+| **Check the Bridge Logs**   | `tmux attach -t cosmic_bridge`   |
+| **Kill a session (Reset)**  | `tmux kill-session -t session_name` |
+| **Kill ALL sessions**       | `tmux kill-server`               |
