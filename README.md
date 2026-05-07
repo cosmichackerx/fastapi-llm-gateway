@@ -57,7 +57,6 @@ ssh -i "your-cosmic-key.pem" ubuntu@your-aws-public-ip
 
 **2. Initial Server Preparation**
 Run the following commands to update and install essential packages:
-
 ```bash
 sudo apt update && sudo apt upgrade -y
 sudo apt install build-essential cmake git python3-pip python3-venv -y
@@ -66,10 +65,17 @@ sudo apt install build-essential cmake git python3-pip python3-venv -y
 # 🧠 Step 3: Text Engine Setup (llama.cpp)
 
 **1. Build the Engine**
+
 ```bash
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
 cmake -B build
 cmake --build build --config Release
+```
 
 **2. Download the Optimized Model**
+
+```bash
+cd models
+curl -L -o llama-3.2-1b-instruct-q4_k_m.gguf https://huggingface.co/unsloth/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf
+```
