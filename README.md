@@ -89,3 +89,29 @@ cd llama.cpp
 cmake -B build
 cmake --build build --config Release
 ```
+
+**2. Download SD-Turbo**
+```bash
+mkdir models && cd models
+# Download the SD-Turbo Safetensors from HuggingFace
+curl -L -o sd_turbo.safetensors https://huggingface.co/stabilityai/sd-turbo/resolve/main/sd_turbo.safetensors
+```
+
+# 🌉 Step 5: The Cosmic Bridge (FastAPI)
+
+**1. Environment Setup**
+
+```bash
+cd ~
+python3 -m venv cosmic_env
+source cosmic_env/bin/activate
+pip install fastapi uvicorn requests pydantic
+```
+
+**2. Create main.py**
+The **main.py** acts as the traffic controller, routing requests to the local engines running on ports 8080 and subprocesses.
+
+```bash
+# Launch with: 
+# uvicorn main:app --host 0.0.0.0 --port 8000
+```
