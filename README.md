@@ -32,3 +32,11 @@ You must configure the **Inbound Rules** to allow traffic to the API and the int
 - **SSH (Port 22)** → Restrict to your admin IP only  
 
 > ⚠️ Always follow the principle of least privilege when setting inbound rules.
+
+You must configure the **Inbound Rules** to allow traffic to the API and the internal engines:
+
+| Protocol     | Port Range | Source        | Description              |
+|--------------|------------|---------------|--------------------------|
+| **SSH**      | 22         | My IP         | Remote Access            |
+| **Custom TCP** | 8000     | 0.0.0.0/0     | Cosmic Bridge (API)      |
+| **Custom TCP** | 8080     | 127.0.0.1/32  | Internal Text Engine     |
