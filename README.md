@@ -40,3 +40,16 @@ You must configure the **Inbound Rules** to allow traffic to the API and the int
 | **SSH**      | 22         | My IP         | Remote Access            |
 | **Custom TCP** | 8000     | 0.0.0.0/0     | Cosmic Bridge (API)      |
 | **Custom TCP** | 8080     | 127.0.0.1/32  | Internal Text Engine     |
+
+> After configuration, launch an instance and wait until it is marked as **Running**.
+
+# 🔑 Step 2: Connection & Local Setup
+
+## 1. Connect to Your Server
+From your local **Windows/Linux terminal**:
+
+```bash
+# Navigate to the folder containing your .pem key
+ssh -i "your-cosmic-key.pem" ubuntu@your-aws-public-ip
+```
+
