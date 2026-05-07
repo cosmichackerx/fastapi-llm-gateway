@@ -306,3 +306,22 @@ chmod +x launch.sh
 ```bash
 curl -X GET http://13.60.199.96:8000/api/status -H "authorization: Bearer cosmic_api_key_13579"
 ```
+
+# 🔥 Use Cases (CURL Examples)
+
+**1. Text-to-Text (Welcome Message)**
+```bash
+curl -X POST http://YOUR_IP:8000/api/generate ^
+-H "authorization: Bearer cosmic_api_key_13579" ^
+-H "Content-Type: application/json" ^
+-d "{\"inputs\": \"Write a powerful 2-sentence welcome message for Cosmic Army X.\"}"
+```
+
+**2. Text-to-Image (Neon Logo)**
+```bash
+curl -X POST http://YOUR_IP:8000/api/image ^
+-H "authorization: Bearer cosmic_api_key_13579" ^
+-H "Content-Type: application/json" ^
+-d "{\"prompt\": \"A glowing neon insignia, cyberpunk style, high detail\"}" ^
+--output cosmic_logo.png
+```
