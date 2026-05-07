@@ -241,4 +241,5 @@ This session handles the Llama 3.2 1B model.
   ```
 
 > Wait for the green light: Once you see main: server is listening on **http://0.0.0.0:8080**, hide the session.
+
 > Detach: Press **CTRL + B**, then *D*.
