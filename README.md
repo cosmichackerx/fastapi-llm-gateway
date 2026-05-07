@@ -271,3 +271,26 @@ If you need to check if things are working or stop a server, use these commands:
 | **Check the Bridge Logs**   | `tmux attach -t cosmic_bridge`   |
 | **Kill a session (Reset)**  | `tmux kill-session -t session_name` |
 | **Kill ALL sessions**       | `tmux kill-server`               |
+
+**⚡ Bonus: The "One-Click" Launch Script**
+> Instead of typing everything manually, you can create a master launch script. Create a file called **launch.sh**:
+```bash
+nano launch.sh
+```
+---
+```bash
+#!/bin/bash
+
+# 1. Kill old sessions if they exist
+tmux kill-session -t text_engine 2>/dev/null
+tmux kill-session -t cosmic_bridge 2>/dev/null
+
+# 2. Start Brain in background
+tmux new-session -d -s text_engine "cd ~/llama.cpp && ./build/bin/llama-server -m models/llama-3.2-1b-instruct-q4_k_m.gguf --port 8080 --host 0.0.0.0 -c 2048 -t 2 --flash-attn on"
+
+# 3. Start Bridge in background
+tmux new-session -d -s cosmic_bridge "cd ~ && source cosmic_env/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000"
+
+echo "🌌 Cosmic Army X is launching in the background..."
+echo "Use 'tmux ls' to see active sessions."
+```
