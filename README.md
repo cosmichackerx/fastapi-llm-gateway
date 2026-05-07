@@ -294,3 +294,15 @@ tmux new-session -d -s cosmic_bridge "cd ~ && source cosmic_env/bin/activate && 
 echo "🌌 Cosmic Army X is launching in the background..."
 echo "Use 'tmux ls' to see active sessions."
 ```
+
+**Make it executable and run it:**
+```bash
+chmod +x launch.sh
+./launch.sh
+```
+
+**Final Verification**
+> Now, go to your Windows terminal and run your status check. If both tmux sessions are working correctly, you will get a perfect "ONLINE" respons
+```bash
+curl -X GET http://13.60.199.96:8000/api/status -H "authorization: Bearer cosmic_api_key_13579"
+```
