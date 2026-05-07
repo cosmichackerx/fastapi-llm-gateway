@@ -243,3 +243,21 @@ This session handles the Llama 3.2 1B model.
 > Wait for the green light: Once you see main: server is listening on **http://0.0.0.0:8080**, hide the session.
 
 > Detach: Press **CTRL + B**, then *D*.
+
+**🚀 Part 2: Launch the Bridge (API Gateway)**
+This session handles the FastAPI main.py that connects to your Android app.
+- Create the session:
+  ```
+  bash
+  tmux new -s cosmic_bridge
+  ```
+- Run the Launch Command:
+  ```bash
+  cd ~
+  source cosmic_env/bin/activate
+  uvicorn main:app --host 0.0.0.0 --port 8000
+  ```
+
+> Wait for the green light: Once you see Uvicorn running on **http://0.0.0.0:8000**, hide the session.
+
+> Detach: Press *CTRL + B*, then *D*.
