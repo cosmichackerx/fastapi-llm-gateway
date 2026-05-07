@@ -212,3 +212,15 @@ After editing your main.py :
 # Launch with: 
 # uvicorn main:app --host 0.0.0.0 --port 8000
 ```
+
+## ⚡ Step 6: Launch Protocol
+**Before we launch, remember these three "Golden Commands":**
+- Detach (Hide the screen): Press **CTRL + B**, then let go, then immediately press **D**.
+-List Sessions:
+```bash
+tmux ls
+```
+-Re-attach (Open the screen): 
+```bash
+tmux attach -t session_name
+```
