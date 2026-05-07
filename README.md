@@ -49,7 +49,6 @@ You must configure the **Inbound Rules** to allow traffic to the API and the int
 
 **1. Connect to Your Server**
 From your local **Windows/Linux terminal**:
-
 ```bash
 # Navigate to the folder containing your .pem key
 ssh -i "your-cosmic-key.pem" ubuntu@your-aws-public-ip
@@ -65,7 +64,6 @@ sudo apt install build-essential cmake git python3-pip python3-venv -y
 # 🧠 Step 3: Text Engine Setup (llama.cpp)
 
 **1. Build the Engine**
-
 ```bash
 git clone https://github.com/ggerganov/llama.cpp
 cd llama.cpp
@@ -74,7 +72,6 @@ cmake --build build --config Release
 ```
 
 **2. Download the Optimized Model**
-
 ```bash
 cd models
 curl -L -o llama-3.2-1b-instruct-q4_k_m.gguf https://huggingface.co/unsloth/Llama-3.2-1B-Instruct-GGUF/resolve/main/Llama-3.2-1B-Instruct-Q4_K_M.gguf
@@ -100,7 +97,6 @@ curl -L -o sd_turbo.safetensors https://huggingface.co/stabilityai/sd-turbo/reso
 # 🌉 Step 5: The Cosmic Bridge (FastAPI)
 
 **1. Environment Setup**
-
 ```bash
 cd ~
 python3 -m venv cosmic_env
@@ -110,7 +106,6 @@ pip install fastapi uvicorn requests pydantic
 
 **2. Create main.py**
 The **main.py** acts as the traffic controller, routing requests to the local engines running on ports 8080 and subprocesses.
-
 ```bash
 # Launch with: 
 # uvicorn main:app --host 0.0.0.0 --port 8000
