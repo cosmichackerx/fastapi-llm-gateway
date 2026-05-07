@@ -222,17 +222,18 @@ After editing your main.py :
 tmux ls
 ```
 
+- Re-attach (Open the screen): 
+```bash
+tmux attach -t session_name
+```
+
 **🚀 Part 1: Launch the Brain (Text Engine)**
 This session handles the Llama 3.2 1B model.
 - Create the session:
   ```bash
   tmux new -s text_engine
   ```
-- Re-attach (Open the screen): 
-```bash
-tmux attach -t session_name
-```
-
+  
 - Run the Launch Command:
   ```bash
   cd ~/llama.cpp
