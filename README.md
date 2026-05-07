@@ -53,3 +53,10 @@ From your local **Windows/Linux terminal**:
 ssh -i "your-cosmic-key.pem" ubuntu@your-aws-public-ip
 ```
 
+**Initial Server Preparation**
+Run the following commands to update and install essential packages:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install build-essential cmake git python3-pip python3-venv -y
+```
