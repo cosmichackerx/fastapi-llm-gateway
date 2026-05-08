@@ -81,8 +81,9 @@ curl -L -o llama-3.2-1b-instruct-q4_k_m.gguf https://huggingface.co/unsloth/Llam
 
 **1. Build the Engine**
 ```bash
-git clone https://github.com/ggerganov/llama.cpp
-cd llama.cpp
+cd ~
+git clone --recursive https://github.com/leejet/stable-diffusion.cpp
+cd stable-diffusion.cpp
 cmake -B build
 cmake --build build --config Release
 ```
